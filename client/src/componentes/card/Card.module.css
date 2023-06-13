@@ -1,0 +1,16 @@
+.card {
+    background-color: rgba(240, 253, 65, 0.809);
+    width:150px;
+    height: 250px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin:20px;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    /* box-shadow: 0 0 10px 6px rgb(221, 115, 161); */
+    overflow: hidden;
+    cursor: default;
+    transition: all 400ms ease;
+    border-style: outset;
+}
