@@ -9,7 +9,7 @@ import Nav from './componentes/navBar/Nav';
 function App() {
   const location = useLocation();
     return(
-    <div className="App">
+    <div>
       {location.pathname !== "/" && <Nav/>}
       
       <Routes>

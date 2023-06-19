@@ -1,24 +1,46 @@
 .contenedor {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
-    margin-bottom: 50px;
     padding: 15px;
     background-color: rgba(250, 7, 7, 0.661);
     height: 70px;
     width: 100%;
-    border-bottom: 2px solid rgb(222, 219, 4) ;
+    border-bottom: 2px solid rgb(34, 34, 9);
+    
   }
 
   .links{
+    background-color: rgb(108, 39, 228);
+    color:rgb(222, 219, 4);
+    border-radius: 4px;
+    /* box-shadow: 0 0 2px 2px rgb(108, 39, 228); */
+    border: 3px solid rgb(59, 17, 133);
+    margin: 10px;
+    /* height: 30px; */
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-family: "IBM Plex Mono", monospace;
+    
+}
+
+  /* .links{
     text-align: center;
     text-decoration: none;
     color: rgb(76, 70, 0);
     margin: 2rem;
-    font-size: 1.5rem;
-    font-family: VT323;
+    font-size: 1.2rem;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+} */
+
+.links:hover{
+    background-color:  rgb(253, 245, 17);
+    color: rgba(250, 7, 7, 0.661);
 }
 
-.links:hover {
-    color:rgb(0, 27, 135);
+.img {
+    width: 80px;
+  height: 67px;
+  border-radius: 50px;
 }

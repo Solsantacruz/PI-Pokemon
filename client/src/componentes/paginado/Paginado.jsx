@@ -1,4 +1,4 @@
-
+import './Paginado.css';
 
 export default function Paginado({pokePage, pokemons, paginado}){
     const pagNumber = [];
@@ -12,7 +12,7 @@ export default function Paginado({pokePage, pokemons, paginado}){
         <nav>
             <ul>
                 {pagNumber?.map(number =>(
-                        <button onClick={()=> paginado(number)}key={number}>{number}</button>
+                        <button onClick={()=> paginado(number)}key={number} className='boton-paginado'>{number}</button>
                 ))}
             </ul>
         </nav>

@@ -4,15 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import validate from './validation';
 import { useNavigate } from 'react-router-dom';
+import style from './CreatePoke.module.css';
+import imgSelec from './imgSelect';
 
 const CreatePoke = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const types = useSelector((state) => state.types)
+    const [imgSele, setImgSele] =useState("");
     const [error, setError] = useState({required: true});
     const [input, setInput] = useState({
         name: "",
-        image: "",
+        image:"",
         life: 0,
         attack: 0,
         defense: 0,
@@ -23,17 +26,31 @@ const CreatePoke = () => {
     });
 
     function handleChange(e) {
-        setInput({
-            ...input,
-            [e.target.name] : e.target.value
-
-        })
+        if(e.target.name === 'image'){
+            setInput({
+                ...input,
+                [e.target.name]: imgSele || e.target.value,
+              });
+        } else {
+            setInput({
+                ...input,
+                [e.target.name] : e.target.value
+            })
+        }
+        
         let objError = validate({
             ...input, [e.target.name] : e.target.value
         })
         setError(objError)
-
     }
+
+    function handleImageClick(image) {
+        setImgSele(image);
+        setInput({
+          ...input,
+          image: image,
+        });
+      }
 
     function handleSelect(e){
         setInput({
@@ -82,59 +99,99 @@ const CreatePoke = () => {
     }, [dispatch])
 
     return(
-    <div>
-    <Link to='/home'><button> Volver </button></Link>
-    <h1> Crea tu pokemon </h1>
-    <form onSubmit={handleSubmit}>
-        <div>
-            <label> Nombre: </label>
-            <input type='text' value={input.name} name="name" placeholder='Ingresa el nombre' onChange={handleChange}/>
-            {!error.name ? null : (<span className="span">{error.name}</span>)}
+    <div className={style.contenedor}>
+    <h1 className={style.h1Title}> Crea tu pokemon </h1>
+    <div className={style.dexForm}>
+    <Link to='/home'><button className={style.btnVolver}> Volver </button></Link>
+    </div>
+    <div className={style.column}>
+        <div className={style.conteImg}> 
+            <label>Imagen:</label>
+            <div className={style.imgList}>
+            {imgSelec.map((image) => (
+            <img
+        src={image}
+        alt='newPoke'
+        className={style.imgMuestra}
+        onClick={() => handleImageClick(image)}/>
+       ))}
+      </div>
+      {!imgSele ? (
+      <input //Si no elige img brindada puede pasar url
+      type="text"
+      value={input.image}
+      name="image"
+      placeholder="Ingresa URL imagen"
+      onChange={handleChange}
+      className={style.input}/>
+       ): null}
         </div>
-        <div>
+
+        {/* <div>
             <label> Imagen: </label>
             <input type='text' value={input.image} name="image" placeholder='Ingresa imagen' onChange={handleChange}/>
+        </div> */}
+        <form onSubmit={handleSubmit} className={style.form}>
+            <div className={style.contenedorForm}>
+        <div>
+            <label className={style.nombre}> Nombre </label>
+            <input type='text' value={input.name} name="name" placeholder='Ingresa el nombre' onChange={handleChange} className={style.input}/>
+            {!error.name ? null : (<span className={style.span}>{error.name}</span>)}
+        </div>
+        <div className={style.contenedorRange}>
+        <div>
+            <label> Life </label>
+            <input type='range' min='0' max='150' value={input.life} name="life"  onChange={handleChange} className={style.range} style={
+                          error.life ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
+                        }/>
+            {!error.life ? null : (<span className={style.span}>{error.life}</span>)}
         </div>
         <div>
-            <label> Life: </label>
-            <input type='number' value={input.life} name="life" placeholder='Ingresa valor numerico' onChange={handleChange}/>
-            {!error.life ? null : (<span className="span">{error.life}</span>)}
+            <label> Attack </label>
+            <input type='range' min='0' max='150' value={input.attack} name="attack"  onChange={handleChange} className={style.range} style={
+                          error.attack ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
+                        }/>
+            {!error.attack ? null : (<span className={style.span}>{error.attack}</span>)}
         </div>
         <div>
-            <label> Attack: </label>
-            <input type='number' value={input.attack} name="attack" placeholder='Ingresa valor numerico' onChange={handleChange}/>
-            {!error.attack ? null : (<span className="span">{error.attack}</span>)}
+            <label> Defense </label>
+            <input type='range' min='0' max='150'value={input.defense} name="defense"  onChange={handleChange} className={style.range} style={
+                          error.defense ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
+                        }/>
+            {!error.defense ? null : (<span className={style.span}>{error.defense}</span>)}
         </div>
         <div>
-            <label> Defense: </label>
-            <input type='number' value={input.defense} name="defense" placeholder='Ingresa valor numerico' onChange={handleChange}/>
-            {!error.defense ? null : (<span className="span">{error.defense}</span>)}
+            <label> Speed </label>
+            <input type='range' min='0' max='150' value={input.speed} name="speed"  onChange={handleChange} className={style.range} style={
+                          error.speed ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
+                        }/>
+            {!error.speed ? null : (<span className={style.span}>{error.speed}</span>)}
         </div>
         <div>
-            <label> Speed: </label>
-            <input type='number' value={input.speed} name="speed" placeholder='Ingresa valor numerico' onChange={handleChange}/>
-            {!error.speed ? null : (<span className="span">{error.speed}</span>)}
+            <label> Height </label>
+            <input type='range' min='0' max='150' value={input.height} name="height"  onChange={handleChange} className={style.range} style={
+                          error.height ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
+                        }/>
+            {!error.height ? null : (<span className={style.span}>{error.height}</span>)}
         </div>
         <div>
-            <label> Height: </label>
-            <input type='number' value={input.height} name="height" placeholder='Ingresa valor numerico' onChange={handleChange}/>
-            {!error.height ? null : (<span className="span">{error.height}</span>)}
+            <label> Weight </label>
+            <input type='range' min='0' max='150' value={input.weight} name="weight" onChange={handleChange} className={style.range} style={
+                          error.weight ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
+                        }/>
+            {!error.weight ? null : (<span className={style.span}>{error.weight}</span>)}
         </div>
-        <div>
-            <label> Weight: </label>
-            <input type='number' value={input.weight} name="weight" placeholder='Ingresa valor numerico' onChange={handleChange}/>
-            {!error.weight ? null : (<span className="span">{error.weight}</span>)}
         </div>
-        <div>
-            <label> Types: </label>
-           <select onChange={handleSelect}>
+        <div className={style.contenedorSelect}>
+            <label>Types</label>
+           <select onChange={handleSelect} className={style.select}>
             {types?.map((ty)=>{
                 return(
                     <option value={ty.name} key={ty.name} name='type'> {ty.name}</option>
                 );
             })}
            </select>
-           {!error.type ? null : (<span className="span">{error.type}</span>)}
+           {!error.type ? null : (<span className={style.span}>{error.type}</span>)}
         </div>
         <div className="div">
                   {input.type.map((el) => {
@@ -145,11 +202,12 @@ const CreatePoke = () => {
                         </div>
                     );
                   })}
-        <button type='submit'> Crear personaje </button>
+        <button type='submit' className={style.btnCrear}> Crear personaje </button>
         </div>
-        
-
+        </div>
     </form>
+    </div>
+    
     </div>
          
     )

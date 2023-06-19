@@ -7,7 +7,7 @@ const clearArray = (arr) =>
      return {
     id: result.id,
     name: result.name,
-    image: result.sprites.front_default,
+    image: result.sprites.other.dream_world.front_default,
     life: result.stats.find((stat) => stat.stat.name === "hp").base_stat,
     attack: result.stats.find((stat) => stat.stat.name === "attack").base_stat,
     defense: result.stats.find((stat) => stat.stat.name === "defense").base_stat,

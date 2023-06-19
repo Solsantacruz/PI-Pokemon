@@ -11,31 +11,31 @@ function Validation(input){
     }
     
     if(input.life < 1 || input.life > 150){
-        error.life = 'El campo debe contener un numero a partir de 1 sin exceder los 150 puntos'
+        error.life = 'Deslice por un valor'
         error.required = true
     }
     
     if(input.attack < 1 || input.attack > 150){
-        error.attack = 'El campo debe contener un numero a partir de 1 sin exceder los 150 puntos'
+        error.attack = 'Deslice por un valor'
         error.required = true
     }
 
     if(input.defense < 1 || input.defense > 150){
-        error.defense = 'El campo debe contener un numero a partir de 1 sin exceder los 150 puntos'
+        error.defense = 'Deslice por un valor'
         error.required = true
     }
 
     if(input.speed < 1 || input.speed > 150){
-        error.speed = 'El campo debe contener un numero a partir de 1 sin exceder los 150 puntos'
+        error.speed = 'Deslice por un valor'
         error.required = true
     }
 
     if(input.weight < 1 || input.weight > 150){
-        error.weight ='El campo debe contener un numero a partir de 1 sin exceder los 150 puntos'
+        error.weight ='Deslice por un valor'
         error.required = true
     }
     if(input.height < 1 || input.height > 150){
-        error.height = 'El campo debe contener un numero a partir de 1 sin exceder los 150 puntos'
+        error.height = 'Deslice por un valor'
         error.required = true
     }
     

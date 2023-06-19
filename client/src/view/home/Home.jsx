@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getAllPokemon,filterByAttack, filterByTypes, sortByCreated, sortByOrderName } from '../../redux/actions';
 import Card from '../../componentes/card/Card';
 import Paginado from '../../componentes/paginado/Paginado';
+import './Home.css'
+import imgfondo from '../../assets/fondo-home.jpg'
 
 
 const Home = () => {
@@ -47,21 +49,21 @@ const Home = () => {
 
 
     return( 
-        <div>
-            
-            <button onClick={e=>{handleClick(e)}}> Volver a cargar los personajes </button>
-        <div>
-        <select onChange={handleSortName}>
+        <div className='contenedor'>
+          <div className='contenidoElementos'>
+            <button onClick={e=>{handleClick(e)}} className='boton'> Volver a cargar los personajes </button>
+        <div className='filtros'>
+        <select onChange={handleSortName} className='select'>
             <option value="filtro"> A-Z:</option>
             <option value="asc">Ascendente</option>
             <option value="desc">Descendente</option>
           </select>
-          <select name="selects" onChange={e=>{handleFilterAttack(e)}}>
+          <select name="selects" onChange={e=>{handleFilterAttack(e)}}className='select'>
             <option value="Fuerza"> Fuerza </option>
             <option value="Mayor fuerza">Mayor fuerza</option>
             <option value="Menor fuerza">Menor fuerza</option>
           </select>
-          <select onChange={handleFilterType}>
+          <select onChange={handleFilterType} className='select'>
             <option value="tipo"> Tipo </option>
             <option value="normal"> Normal </option>
             <option value="flying"> Flying </option>
@@ -74,19 +76,20 @@ const Home = () => {
             <option value="electric"> Electric </option>
             <option value="fairy"> Fairy </option>
           </select>
-          <select onChange={handleSortCreated}>
+          <select onChange={handleSortCreated} className='select'>
             <option value="Todos"> Todos </option>
             <option value="Creados"> Creados </option>
             <option value="Existentes"> Existentes </option>
           </select>
-         <div>
+          </div>
+         <div className='paginado'>
             <Paginado 
             pokePage={pokePage}
             pokemons={pokemons.length}
             paginado={paginado}
             />
-
-
+            </div>
+            <div className='contenedor-card'>
             {currentPoke?.map((poke)=>{
                 // console.log(poke)
                 return(
@@ -99,8 +102,9 @@ const Home = () => {
                 );
             })
             }
-            </div>
+            
         </div>
+     </div>
     </div>
 
 

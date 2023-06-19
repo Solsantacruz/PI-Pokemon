@@ -3,19 +3,25 @@ import style from './Card.module.css';
 import {Link} from 'react-router-dom';
 
 const Card = (props)=>{
-
     const { id, name, image, types} = props;
     // console.log(id);
-    
+    const primaryType = types[0];
 
+    const cardClasses = `${style.card} ${types.map((type) => style[primaryType.toLowerCase()]).join(' ')}`;
 return(
-    <div className={style.card}>
-        <Link to={`/detail/${id}`}>
-        <h3>{name}</h3>
-        <img src={image} alt='foto'/>
-        <p>{types.join(' | ')}</p>
-        </Link>
+    <>
+    <Link to={`/detail/${id}`} className={style.link}>
+    <div className={cardClasses}>
+        
+        <div className={style.imgContenedor}>
+        <img src={image} alt='foto' className={style.img} height="100" width={100}/>
+        </div>
+        <h3 className={style.name}>{name}</h3>
+        <p className={style.p}>{types.join(' | ')}</p>
+        
     </div>
+    </Link>
+    </>
 )
 };
 

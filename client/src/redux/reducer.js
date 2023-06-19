@@ -69,8 +69,8 @@ const rootReducer = (state = initialState , action) => {
     case SORT_BY_CREATED:
         const pokes = [...state.copyPokemons]
         const createdFilter = action.payload === "Creados"
-          ? pokes.filter((e) => e.id.length > 2)
-          : pokes.filter((e) => e.id <= 120);
+          ? pokes.filter((e) => e.id.length <= 40) // si es menor igual 
+          : pokes.filter((e) => e.id > 2); // si es mayor // de esta forma funnciona, si cambio los valores no. 
       return {
         ...state,
         allPokemons: action.payload === "Todos" ? state.copyPokemons : createdFilter,

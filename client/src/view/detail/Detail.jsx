@@ -1,8 +1,11 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getById, deletePokemon, clearDetail} from "../../redux/actions";
 import { useEffect } from "react";
-import NotFoundPage from "../loading/NotFoundPage";
+import style from './Detail.module.css';
+import imgPokeDex from '../../assets/pokedexNew.png';
+import imgAsh from '../../assets/ashandpokedexNew.png';
+import loading from '../../assets/loadingDetailNew.png';
 
 const Detail = (props) =>{
     const dispatch = useDispatch();
@@ -22,24 +25,37 @@ const Detail = (props) =>{
         navigate('/home')
     }
 return(
-    <div>
+    <div className={style.contenedorP}>
+        <div className={style.ash}>
+            <img src={imgAsh} alt="ash" />
+        </div>
+        <div className={style.contenedorPokeDex}>
+        <button className={style.delete} onClick={handleDelete}> Back </button>
+            <img src={imgPokeDex} alt="pokedex" className={style.imgPokedex}/>
+            <div className={style.data}>
+                <p className={style.pData}>Data: </p>
+            </div>
+            
+        </div>
         <div>
         {detalle.length > 0 ?
         <div>
-            <h2>Hola mi nombre es </h2><h1> {detalle[0].name}</h1>
-            <img src={detalle[0].image} alt="poke"></img>
-            <p>Life: {detalle[0].life}</p>
-            <p>Attack: {detalle[0].attack}</p>
-            <p>Defense: {detalle[0].defense}</p>
-            <p>Speed: {detalle[0].speed}</p>
-            <p>Height: {detalle[0].height}</p>
-            <p>Weight: {detalle[0].weight}</p>
-            <button className="delete" onClick={handleDelete}>Delete Pokemon</button>
+            <h1 className={style.namePoke}> {detalle[0].name}</h1>
+            <img src={detalle[0].image} alt="poke" className={style.imgPoke}/>
+            <p className={style.life}>Life: {detalle[0].life}</p>
+            <p className={style.attack}>Attack: {detalle[0].attack}</p>
+            <p className={style.defense}>Defense: {detalle[0].defense}</p>
+            <p className={style.speed}>Speed: {detalle[0].speed}</p>
+            <p className={style.height}>Height: {detalle[0].height}</p>
+            <p className={style.weight}>Weight: {detalle[0].weight}</p>
         </div>
             :
-            (<h1>Loading</h1>)
-        
+            (<div>
+                <img src={loading} alt="loading" className={style.loading}/>
+                <h1 className={style.h1Loading}>Loading...</h1>
+            </div>)
         }
+
         </div>
     </div>
 
