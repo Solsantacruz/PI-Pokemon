@@ -112,6 +112,7 @@ const CreatePoke = () => {
             <img
         src={image}
         alt='newPoke'
+        key={image}
         className={style.imgMuestra}
         onClick={() => handleImageClick(image)}/>
        ))}
@@ -135,7 +136,7 @@ const CreatePoke = () => {
             <div className={style.contenedorForm}>
         <div>
             <label className={style.nombre}> Nombre </label>
-            <input type='text' value={input.name} name="name" placeholder='Ingresa el nombre' onChange={handleChange} className={style.input}/>
+            <input type='text' value={input.name} name="name" placeholder='Ingresa el nombre' onChange={handleChange} className={style.input} />
             {!error.name ? null : (<span className={style.span}>{error.name}</span>)}
         </div>
         <div className={style.contenedorRange}>

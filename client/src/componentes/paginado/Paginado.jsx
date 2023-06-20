@@ -4,8 +4,8 @@ export default function Paginado({pokePage, pokemons, paginado}){
     const pagNumber = [];
 
 
-    for (let i = 0; i <= Math.ceil(pokemons/pokePage); i++) {
-        pagNumber.push(i+1)
+    for (let i = 1; i <= Math.ceil(pokemons/pokePage); i++) {
+        pagNumber.push(i)
         
     }
     return(

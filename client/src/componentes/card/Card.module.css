@@ -172,3 +172,13 @@
     transform: translateY(-3%);
     box-shadow: 0 0 10px 6px  rgb(231, 187, 142);
   }
+
+  .ice {
+    background: rgb(96,68,221);
+    background: linear-gradient(90deg, rgba(96,68,221,0.9808298319327731) 15%, rgba(83,187,237,1) 38%, rgba(129,255,249,1) 60%, rgba(118,69,252,1) 81%);
+    /* Otros estilos específicos para el tipo "water" */
+  }
+  .ice:hover{
+    transform: translateY(-3%);
+    box-shadow: 0 0 10px 6px rgb(99, 99, 255);
+  }

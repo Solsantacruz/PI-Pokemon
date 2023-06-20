@@ -5,7 +5,7 @@ import { getAllPokemon,filterByAttack, filterByTypes, sortByCreated, sortByOrder
 import Card from '../../componentes/card/Card';
 import Paginado from '../../componentes/paginado/Paginado';
 import './Home.css'
-import imgfondo from '../../assets/fondo-home.jpg'
+
 
 
 const Home = () => {

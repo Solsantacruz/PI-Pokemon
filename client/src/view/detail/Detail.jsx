@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import style from './Detail.module.css';
 import imgPokeDex from '../../assets/pokedexNew.png';
 import imgAsh from '../../assets/ashandpokedexNew.png';
-import loading from '../../assets/loadingDetailNew.png';
+import loading from '../../assets/pokeBall.gif';
 
 const Detail = (props) =>{
     const dispatch = useDispatch();

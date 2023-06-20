@@ -5,6 +5,7 @@ import { GET_POKEMON, FILTER_BY_ATTACK, FILTER_BY_TYPES, SORT_BY_CREATED, SORT_O
 const initialState = {
   allPokemons : [],
   copyPokemons : [],
+  pokemons: [],
   detail: [],
   types: []
 }
@@ -16,7 +17,8 @@ const rootReducer = (state = initialState , action) => {
     return{
         ...state, 
         allPokemons: action.payload,
-        copyPokemons: action.payload
+        copyPokemons: action.payload,
+        pokemons: action.payload,
     }
 
     case GET_TYPES:
@@ -65,7 +67,10 @@ const rootReducer = (state = initialState , action) => {
         return{
             ...state, 
             allPokemons: typesFilter,
+            // copyPokemons: typesFilter
         }
+
+        
     case SORT_BY_CREATED:
         const pokes = [...state.copyPokemons]
         const createdFilter = action.payload === "Creados"
@@ -74,6 +79,7 @@ const rootReducer = (state = initialState , action) => {
       return {
         ...state,
         allPokemons: action.payload === "Todos" ? state.copyPokemons : createdFilter,
+        // copyPokemons: createdFilter,
       }
     case SORT_ORDER:
         let orderedCharacters = [...state.allPokemons];
