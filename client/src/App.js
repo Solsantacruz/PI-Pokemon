@@ -6,6 +6,7 @@ import CreatePoke from './componentes/createPoke/CreatePoke';
 import Detail from './view/detail/Detail';
 import Nav from './componentes/navBar/Nav';
 import About from './view/about/About';
+import NotFound from './view/notFound/NotFound';
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function App() {
       <Route path='/pokemons' element={<CreatePoke/>}/>
       <Route path='/detail/:id' element={<Detail/>}/>
       <Route path='/about' element={<About/>} />
+      <Route path='*' element={<NotFound />} />
       </Routes>
       
     </div>

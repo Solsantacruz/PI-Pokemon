@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import { createPokemon, getTypes } from '../../redux/actions';
+import { createPokemon, getAllPokemon, getTypes } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import validate from './validation';
@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import style from './CreatePoke.module.css';
 import imgSelec from './imgSelect';
 
+
 const CreatePoke = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const types = useSelector((state) => state.types)
+    const [isFormComplete, setIsFormComplete] = useState(false);
     const [imgSele, setImgSele] =useState("");
     const [error, setError] = useState({required: true});
     const [input, setInput] = useState({
@@ -37,30 +39,47 @@ const CreatePoke = () => {
                 [e.target.name] : e.target.value
             })
         }
-        
         let objError = validate({
             ...input, [e.target.name] : e.target.value
         })
         setError(objError)
+          // Verificar si todos los campos están completos
+        const isComplete = Object.values(objError).every((value) => !value);
+        if(input.image.length > 0){
+            setIsFormComplete(isComplete);
+        }
     }
 
+    //Imagen select
     function handleImageClick(image) {
         setImgSele(image);
         setInput({
           ...input,
           image: image,
-        });
-      }
-
-    function handleSelect(e){
-        setInput({
-            ...input,
-            type: [...input.type, e.target.value]
         })
+    }
+     
+    //Types
+    function handleSelect(e){
+        if(e.target.checked) {
+            setInput({
+                ...input,
+                type: [...input.type, e.target.value]
+            })
+        } else if(!e.target.checked){
+            setInput({
+                ...input,
+                type: input.type.filter((el) => el !== e.target.value),
+            })
+        }
         let objError = validate({
-            ...input, [e.target.name] : e.target.value
+            ...input,
+                type: [...input.type, e.target.value]
         })
         setError(objError)
+          // Verificar si todos los campos están completos
+        const isComplete = Object.values(objError).every((value) => !value);
+            setIsFormComplete(isComplete);
     }
 
     function handleSubmit(e){
@@ -84,32 +103,29 @@ const CreatePoke = () => {
             })
         }
         navigate('/home');
-    }
-
-    function handleDelete(option){
-        setInput({
-            ...input,
-            type: input.type.filter(type=>type !== option)
-        })
+        dispatch(getAllPokemon())
     }
     
-
     useEffect(() => {
         dispatch(getTypes());
     }, [dispatch])
+
+    function handleRefresh() {
+        window.location.reload();
+      }
 
     return(
     <div className={style.contenedor}>
     <h1 className={style.h1Title}> Crea tu pokemon </h1>
     <div className={style.dexForm}>
-    <Link to='/home'><button className={style.btnVolver}> Volver </button></Link>
+    <Link to='/home'><button className={style.btnVolver}> Back </button></Link>
+    <button onClick={handleRefresh} className={style.btnRefresh}> Refresh </button>
     </div>
     <div className={style.column}>
         <div className={style.conteImg}> 
-            <label>Imagen:</label>
-            <div className={style.imgList}>
-            {imgSelec.map((image) => (
-            <img
+        <div className={style.imgList}>
+        {imgSelec.map((image) => (
+        <img
         src={image}
         alt='newPoke'
         key={image}
@@ -118,6 +134,7 @@ const CreatePoke = () => {
        ))}
       </div>
       {!imgSele ? (
+     <label>
       <input //Si no elige img brindada puede pasar url
       type="text"
       value={input.image}
@@ -125,13 +142,22 @@ const CreatePoke = () => {
       placeholder="Ingresa URL imagen"
       onChange={handleChange}
       className={style.input}/>
-       ): null}
+     Sube tu propia imagen</label>
+       )  : null}
         </div>
-
-        {/* <div>
-            <label> Imagen: </label>
-            <input type='text' value={input.image} name="image" placeholder='Ingresa imagen' onChange={handleChange}/>
-        </div> */}
+        <div className={style.containerTypes}>
+            <div className={style.checkTypes}>
+                {types?.map((ty) => (
+                    <div className={style.checkOptions} key={ty}>
+                        <input value={ty.name} type='checkbox' name='type' id={ty.name} onChange={handleSelect} className={style.ckeck} />
+                        <label className={style.typesLabels} htmlFor={ty.name}>{ty.name} </label>
+                    </div>
+                ))
+                
+                }
+            </div>
+           {!error.type ? null : (<span className={style.span}>{error.type}</span>)}
+        </div>
         <form onSubmit={handleSubmit} className={style.form}>
             <div className={style.contenedorForm}>
         <div>
@@ -183,35 +209,12 @@ const CreatePoke = () => {
             {!error.weight ? null : (<span className={style.span}>{error.weight}</span>)}
         </div>
         </div>
-        <div className={style.contenedorSelect}>
-            <label>Types</label>
-           <select onChange={handleSelect} className={style.select}>
-            {types?.map((ty)=>{
-                return(
-                    <option value={ty.name} key={ty.name} name='type'> {ty.name}</option>
-                );
-            })}
-           </select>
-           {!error.type ? null : (<span className={style.span}>{error.type}</span>)}
-        </div>
-        <div className="div">
-                  {input.type.map((el) => {
-                    return (
-                        <div key={el}>
-                            <h4 className="h4">{el}</h4>
-                            <button className="x_button" onClick={() => {handleDelete(el)}}>x</button>
-                        </div>
-                    );
-                  })}
-        <button type='submit' className={style.btnCrear}> Crear personaje </button>
-        </div>
+        <button type='submit' className={style.btnCrear} disabled={!isFormComplete} style={!isFormComplete ? {backgroundColor:'whitesmoke', color:"black"} : null }> Crear personaje </button>
         </div>
     </form>
     </div>
-    
-    </div>
+</div>
          
-    )
-}
+)}
 
 export default CreatePoke;

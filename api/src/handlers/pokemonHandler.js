@@ -9,9 +9,10 @@ router.get('/', async (req, res) => {
     const { name } = req.query;
     try { // busca el poke por nombre y sino devuelve todos los pokemones (de la api)
         const resultado =  name ? await searchPokemon(name) : await getAllPokemon();
-        res.status(200).json(resultado);
+        resultado.length ?
+        res.status(200).json(resultado) : res.status(404).json({error: error.message})
       } catch(error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ message: error.message });
       }
     });
 
@@ -32,10 +33,10 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const {name, image, life, attack, defense, speed, height, weight, type , creadoEnDB } = req.body;
-   console.log(req.body);
+  
   try {
     const newPoke = await createPokemon(name, image, life, attack, defense, speed, height, weight, type, creadoEnDB);
-    res.status(200).json(newPoke);
+    res.status(201).json(newPoke);
   } catch (error) {
     res.status(404).send("Error al cargar al nuevo pokemon")
   }

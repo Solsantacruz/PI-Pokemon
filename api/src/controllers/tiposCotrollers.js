@@ -10,7 +10,7 @@ const getType = async () => {
       return existingTypes;
     }
 
-// SI NO ESTAN LOS TYPOS EN LA BASE DE DATOS HCE LA PETICION A LA API Y LOS GUARDA.
+// SI NO ESTAN LOS TYPOS EN LA BASE DE DATOS HACE LA PETICION A LA API Y LOS GUARDA.
     const response = await axios.get("https://pokeapi.co/api/v2/type"); //Trae todos los tipos
     const typesApi = response.data.results;
  

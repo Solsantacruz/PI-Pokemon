@@ -1,7 +1,8 @@
 const axios = require('axios');
 const {Pokemon, Type} = require('../db');
 
-// Creo un metodo se encarga de mapear y traer las propiedades de la api, de esta forma queda mas limpio y se puede reutilizar.
+// Creo un metodo se encarga de mapear y traer las propiedades de la api, 
+//de esta forma queda mas limpio y se puede reutilizar.
 const clearArray = (arr) => 
   arr.map((result) => {
      return {
@@ -37,7 +38,7 @@ const clearArray = (arr) =>
 //Busqueda de todos los personajes de la api y la BDD 
 const getAllPokemon = async () => {
     //Datos de las base de datos
-    //inclute el modelo tipos de la bdd
+    //incluye el modelo tipos de la bdd
   const pokemonsDb = await Pokemon.findAll({
     include:{
       model: Type,
@@ -49,6 +50,7 @@ const getAllPokemon = async () => {
   })
 
   const dbFinal = pokeDbFinal(pokemonsDb)
+  
   // datos de la api
   const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=120&offset=0");
   const pokemons = response.data.results;
@@ -111,7 +113,6 @@ const dbFinal = pokeDbFinal(pokemonsDb)
 
     const newPokemon = await Pokemon.create({name, image, life, attack, defense, speed, height, weight, creadoEnDB});
 
-    
     let typeDb = await Type.findAll({
       where: {name: type}
     })
@@ -122,24 +123,3 @@ const dbFinal = pokeDbFinal(pokemonsDb)
     
 
 module.exports = {getAllPokemon, searchPokemon, createPokemon} ;
-
-
-
-//   const getDbInfo = async () => {
-//         return await Pokemon.findAll({
-//             include: {
-//                 model : Tipos, // el modelo creado para la base de datos
-//                 attributes : ["name"],
-//                 through: {
-//                     attributes: [],
-//                 }
-//             }
-//         })
-//   }
-
-//   const getAllPokemons = async () => {
-//     const API = await getApiPokemon();
-//     const BD = await getDbInfo();
-//      const InfoTotal = API.concat(BD);
-//      return InfoTotal; 
-//   }

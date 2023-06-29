@@ -3,7 +3,7 @@ import style from './Card.module.css';
 import {Link} from 'react-router-dom';
 
 const Card = (props)=>{
-    const { id, name, image, types} = props;
+    const { id, name, image, types, attack} = props;
     // console.log(id);
     const primaryType = types[0];
 
@@ -18,6 +18,9 @@ return(
         </div>
         <h3 className={style.name}>{name}</h3>
         <p className={style.p}>{types.join(' | ')}</p>
+        <div>
+        <p className={style.pAttk}>Attk {attack}</p>
+        </div>
         
     </div>
     </Link>

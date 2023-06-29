@@ -8,6 +8,10 @@ function Validation(input){
     } else if (!/\S{1,15}[^0-9]/.test(input.name)){
         error.name = 'Nombre invalido. Debe contener entre 2 a 15 caracteres';
         error.required = true
+    } else if
+        (!/^[a-z]{2,15}$/.test(input.name)){
+            error.name = 'Nombre inválido. Debe contene letras minúsculas';
+            error.required = true;
     }
     
     if(input.life < 1 || input.life > 150){
@@ -38,7 +42,16 @@ function Validation(input){
         error.height = 'Deslice por un valor'
         error.required = true
     }
-    
+
+    //Validations of Types Imput
+  if (!input.type.length) {
+    error.type = 'Debes elegir al menos un type';
+    error.required = true
+  }
+  if (input.type.length > 2) {
+    error.type = `solo pueden ser dos types`;
+    error.required = true
+  }
     return error;
 }
 

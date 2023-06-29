@@ -77,6 +77,14 @@
 
 }
 
+.typePoke {
+    position: absolute;
+    top: 73.5%;
+    left: 40%;
+    font-size: 1.3rem;
+    font-family: "IBM Plex Mono", monospace;
+}
+
 .namePoke{
     position: absolute;
     font-weight: 600;
@@ -90,7 +98,7 @@
 
 .life{
     position: absolute;
-    top: 75.5%;
+    top: 78%;
     left: 40%;
     font-size: 1.3rem;
     font-family: "IBM Plex Mono", monospace;
@@ -98,7 +106,7 @@
 
 .attack {
     position: absolute;
-    top: 81.2%;
+    top: 83%;
     left: 40%;
     font-size: 1.3rem;
     font-family: "IBM Plex Mono", monospace;
@@ -106,14 +114,14 @@
 
 .defense {
     position: absolute;
-    top: 87%;
+    top: 88%;
     left: 40%;
     font-size: 1.3rem;
     font-family: "IBM Plex Mono", monospace;
 }
 .speed{
     position: absolute;
-    top: 75.5%;
+    top: 78%;
     left: 50%;
     font-size: 1.3rem;
     font-family: "IBM Plex Mono", monospace;
@@ -121,7 +129,7 @@
 
 .height {
     position: absolute;
-    top: 81.2%;
+    top: 83%;
     left: 50%;
     font-size: 20px;
     font-family: "IBM Plex Mono", monospace;
@@ -129,7 +137,7 @@
 
 .weight{
     position: absolute;
-    top: 87%;
+    top: 88%;
     left: 50%;
     font-size: 20px;
     font-family: "IBM Plex Mono", monospace;

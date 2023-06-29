@@ -25,36 +25,38 @@
 }
 .column{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 250px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
 }
 .h1Title {
 position: absolute;
-top: -38px;
-left: 590px;
+top: -28px;
+left: 520px;
 font-family: pokeFont;
-font-size: 3rem;
--webkit-text-stroke: 2px blue;
--webkit-text-fill-color: #fdf504;
+font-size: 4rem;
+-webkit-text-stroke: 2px rgb(1, 1, 177);
+-webkit-text-fill-color: #f9d801;
 }
 
 .contenedorForm {
     background-color: rgba(148, 2, 2, 0.644);
-    height: 600px;
+    height: 400px;
     width: 400px;
-    top: 105px;
+    top: -105px;
     left: 260px;
     box-shadow: -3px 4px 0  #ffffff93, -5px 7px 0  #511717ea;
-    border-radius: 10px;
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 
 .btnVolver{
     position: absolute;
-    top: 5%;
-    left:77%;
-    height: 35px;
-    width: 80px;
+    top: 15%;
+    left:10%;
+    height: 45px;
+    width: 90px;
     background-color: #313a41;
     color: white;
     border: none;
@@ -63,18 +65,35 @@ font-size: 3rem;
     cursor: pointer;
 }
 
+.btnRefresh{
+  position: absolute;
+  top: 15%;
+  left:17%;
+  height: 45px;
+  width: 90px;
+  background-color: #313a41;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: -3px 2px 0  #515251;
+  cursor: pointer;
+}
+
 .btnCrear {
     position: absolute;
-    top: 82%;
-    left: 65%;
-    height: 45px;
-    width: 170px;
+    top: 112%;
+    left: -100%;
+    height: 55px;
+    width: 300px;
     background-color: #1e2428;
     color: white;
     border: none;
     border-radius: 5px;
     box-shadow: -3px 2px 0  #515251;
     cursor: pointer;
+    font-size: 1.3rem;
+    font-family: 'calibri';
+    font-weight: 900;
 }
 
 
@@ -136,7 +155,7 @@ font-size: 3rem;
     color: rgb(250, 243, 243);
     font-size: 15px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    padding-bottom: 7px;
+    
     /* text-shadow: 1px 1px  rgb(255, 255, 255); */
     margin-left: 27%;
    
@@ -165,7 +184,7 @@ font-size: 3rem;
     box-shadow: -41px 0 0 40px #f4fa3d;
   }
 
-  .contenedorSelect {
+  /* .contenedorSelect {
     position: absolute;
     right: 400px;
     bottom: 180px;
@@ -184,12 +203,12 @@ font-size: 3rem;
     padding: 2px 8px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 1rem;
-}
+} */
 
-.select:hover{
+/* .select:hover{
     background-color: rgb(29, 20, 44);
     color:rgb(222, 219, 4);
-}
+} */
   
 .contenedorRange {
     display: grid;
@@ -197,4 +216,70 @@ font-size: 3rem;
     gap: 10px;
     padding-top: 45px;
 }
+
+/* .contenedorSpaType {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  background-color: #f7f7fa;
+  width: 100px;
+  height: 22px;
+  border-radius: 5px;
+} */
+
+/* checkbox */
+
+.containerTypes {
+  text-transform: uppercase;
+  display: grid;
   
+  /* flex-wrap: wrap;
+  flex-direction: column;
+  padding: 5px 5px; */
+  /* background: rgba(0, 0, 0, 0.5); */
+  background-color: rgba(148, 2, 2, 0.644);
+  border-radius: 16px;
+  box-shadow: -3px 4px 0  #ffffff93, -5px 7px 0  #511717ea;
+  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  /* border: 3px solid rgb(255, 255, 255); */
+  
+}
+
+.checkTypes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-left: 35px;
+}
+
+.checkOptions {
+  display: flex;
+  width: 90px;
+  align-items: center;
+ 
+}
+.checkOptions:hover {
+  background: rgb(174, 180, 243);
+  border-radius: 30px;
+}
+
+.ckeck {
+  display: none;
+}
+
+.ckeck:checked + label {
+  background: #00fd0a;
+
+  border-radius: 30px;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.typesLabels {
+  cursor: pointer;
+  margin: 0 5px;
+  font-family: pokeFont;
+ font-size: 1.2rem;
+-webkit-text-stroke: 1px rgb(1, 1, 177);
+-webkit-text-fill-color: #f9d801;
+}

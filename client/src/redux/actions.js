@@ -8,7 +8,7 @@ export const GET_TYPES = "GET_TYPES";
 export const GET_DETAIL = "GET_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const CREATE_POKEMON = "CREATE_POKEMON";
-export const DELETE_POKE = "DELETE_POKE";
+// export const DELETE_POKE = "DELETE_POKE";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
 
 
@@ -57,13 +57,15 @@ export function sortByOrderName (payload) {
 export function getSearchName (name) {
     return async function (dispatch){
         try{
-        let response = await axios.get("http://localhost:3001/pokemons?name=" + name)
+        let response = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+        const pokemon = response.data;
         return dispatch({
             type: SEARCH_NAME,
-            payload: response.data
+            payload: pokemon
         })
         } catch (error) {
-        throw Error(error.message)
+            // console.log(error);
+        alert(`Pokemon name not found`)
         }
 }}
 
@@ -106,22 +108,6 @@ export function getTypes () {
           throw Error(error.message)
         }
 }}
-
-export function deletePokemon(id){
-    return async function(dispatch){
-        try{
-            let response = await axios.get(`http://localhost:3001/pokemons/${id}`)
-            return dispatch({
-                type: DELETE_POKE,
-                payload: response.data
-            })
-    
-            }catch (error) {
-            throw Error(error.message)
-            }
-        }
-
-}
 
 export function clearDetail(){
             return {

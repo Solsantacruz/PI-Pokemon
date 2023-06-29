@@ -4,6 +4,7 @@ import {getSearchName} from '../../redux/actions';
 import style from './SearchBar.module.css';
 import charLoad from '../../assets/charGirando.gif';
 
+
 const SearchBar = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
@@ -13,23 +14,23 @@ const SearchBar = () => {
     function handleInputChange(e) {
         e.preventDefault();
         setName(e.target.value)
-        
     }
-
-    async function handleSubmit(e){
+   
+     function handleSubmit(e){
         e.preventDefault();
-        if(name) {
-            setLoad(true);
-           await dispatch(getSearchName(name));
-            setLoad(false);
-            setName("")
+        if(!name) {
+            alert(`Ingrese un nombre valido.
+ No puede contener numeros ni caracteres especiales.
+ No debe contener mayusculas.`);
         } else {
-            alert("Ingrese un nombre valido");
-        }
-        
-    }
-
-
+            setLoad(true);
+             dispatch(getSearchName(name))
+             .then(() => {
+                setLoad(false);
+             setName("")
+             })
+          } 
+}
     return(
     <div>
         {
@@ -42,12 +43,8 @@ const SearchBar = () => {
                 <img src={charLoad} alt="search" />
                 <h2>Searching...</h2>
             </div>
-        )
-        }
-        
+        )}
     </div>
-
-
 )}
 
 export default SearchBar;

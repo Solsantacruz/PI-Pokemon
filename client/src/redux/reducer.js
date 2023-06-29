@@ -1,13 +1,14 @@
-import { GET_POKEMON, FILTER_BY_ATTACK, FILTER_BY_TYPES, SORT_BY_CREATED, SORT_ORDER, SEARCH_NAME, CREATE_POKEMON, GET_TYPES, GET_DETAIL, DELETE_POKE, CLEAR_DETAIL } from "./actions";
+import { GET_POKEMON, FILTER_BY_ATTACK, FILTER_BY_TYPES, SORT_BY_CREATED, SORT_ORDER, SEARCH_NAME, CREATE_POKEMON, GET_TYPES, GET_DETAIL, CLEAR_DETAIL } from "./actions";
 
 
 
 const initialState = {
   allPokemons : [],
   copyPokemons : [],
-  pokemons: [],
+  loading: false,
   detail: [],
-  types: []
+  types: [],
+  filterTipos : [],
 }
 
 
@@ -18,7 +19,10 @@ const rootReducer = (state = initialState , action) => {
         ...state, 
         allPokemons: action.payload,
         copyPokemons: action.payload,
-        pokemons: action.payload,
+        filterTipos : action.payload,
+        loading: true,
+
+    
     }
 
     case GET_TYPES:
@@ -36,7 +40,7 @@ const rootReducer = (state = initialState , action) => {
     case SEARCH_NAME:
         return{
             ...state,
-            allPokemons: action.payload
+            allPokemons: action.payload,
         }
 
     case CREATE_POKEMON:
@@ -58,29 +62,29 @@ const rootReducer = (state = initialState , action) => {
         return {
           ...state,
           allPokemons:
-            action.payload === "Fuerza" ? state.copyPokemons : attackFilter
+            action.payload === "Fuerza" ? state.copyPokemons : attackFilter,
         }
-        
-    case FILTER_BY_TYPES:
-        const allType = [...state.copyPokemons];
+        case FILTER_BY_TYPES:
+        const allType = [...state.filterTipos];
         const typesFilter = action.payload === 'tipo' ? allType : allType.filter(te => te.types?.includes(action.payload))
         return{
             ...state, 
             allPokemons: typesFilter,
-            // copyPokemons: typesFilter
+            // copyPokemons: typesFilter,
         }
 
-        
     case SORT_BY_CREATED:
         const pokes = [...state.copyPokemons]
         const createdFilter = action.payload === "Creados"
-          ? pokes.filter((e) => e.id.length <= 40) // si es menor igual 
-          : pokes.filter((e) => e.id > 2); // si es mayor // de esta forma funnciona, si cambio los valores no. 
+        ? pokes.filter((e) => typeof e.id === "string") // Filtrar por ID de tipo string (UUID)
+        : pokes.filter((e) => typeof e.id === "number"); // Filtrar por ID de tipo number 
       return {
         ...state,
         allPokemons: action.payload === "Todos" ? state.copyPokemons : createdFilter,
-        // copyPokemons: createdFilter,
-      }
+        filterTipos: action.payload === "Todos" ? state.copyPokemons : createdFilter,
+        
+      } 
+
     case SORT_ORDER:
         let orderedCharacters = [...state.allPokemons];
         orderedCharacters = orderedCharacters.sort((a, b) => {
@@ -98,9 +102,6 @@ const rootReducer = (state = initialState , action) => {
           allPokemons:
             action.payload === "filtro" ? state.copyPokemons : orderedCharacters
         };
-
-    case DELETE_POKE:
-            return{...state}
         
     case CLEAR_DETAIL:
             return {
