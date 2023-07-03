@@ -37,31 +37,11 @@ export const deletePokemons = (id) =>{
           })
           .catch((error) => console.log(error));
       } catch (error) {
-        console.error(error);
+        alert('Ocurrio algo inesperado. Vuelva a intentarlo')
       }
       
       };
    };
-
-// export const deletePokemon = (id) => {
-//     return async (dispatch) => {
-//       try {
-//         return fetch(`${URLDIR}/pokemons/delete/${id}`, {
-//           method: 'DELETE',
-//         })
-//           .then((response) => response.json())
-//           .then((json) => {
-//             dispatch({
-//               type: DELETE_POKE,
-//               payload: json.id,
-//             });
-//           })
-//           .catch((error) => console.log(error));
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     };
-//   };
 
 
 export function getAllPokemon() {
@@ -73,7 +53,7 @@ export function getAllPokemon() {
                 payload: response.data
             })
     } catch (error) {
-        throw Error(error.message)
+        alert('Hubo un error, recargue la pagina')
     }
 }}
 
@@ -132,7 +112,7 @@ export function getById (id){
         })
 
         }catch (error) {
-        throw Error(error.message)
+          alert('Ocurrio algo inesperado')
         }
     }
 }
@@ -157,7 +137,7 @@ export function getTypes () {
             payload: response.data
         })
         } catch (error) {
-          throw Error(error.message)
+            alert('Ocurrio algo inesperado')
         }
 }}
 
