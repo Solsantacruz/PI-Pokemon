@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const {getAllPokemon, searchPokemon, createPokemon} = require('../controllers/pokemonsControllers')
+const {Pokemon} = require('../db.js')
 
 
 const router = Router();
@@ -43,4 +44,16 @@ router.post('/', async (req, res) => {
 })
 
 
+// para eliminar de db
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+   await Pokemon.destroy({ where: { id: id,}, });
+   const deletePoke = await Pokemon.findAll();
+    res.status(200).json(deletePoke);
+  } catch (error) {
+    console.log('error');
+    res.status(400).send({ error: 'Delete Fail' });
+  }
+});
 module.exports = router;

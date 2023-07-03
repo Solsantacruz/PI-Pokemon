@@ -5,11 +5,11 @@ function Validation(input){
     if(!input.name){
         error.name = 'Ingrese el Poke-Nombre'
         error.required = true;
-    } else if (!/\S{1,15}[^0-9]/.test(input.name)){
-        error.name = 'Nombre invalido. Debe contener entre 2 a 15 caracteres';
+    } else if (!/\S{1,10}[^0-9]/.test(input.name)){
+        error.name = 'Nombre invalido. Debe contener entre 2 a 10 caracteres';
         error.required = true
     } else if
-        (!/^[a-z]{2,15}$/.test(input.name)){
+        (!/^[a-z]{2,10}$/.test(input.name)){
             error.name = 'Nombre inválido. Debe contene letras minúsculas';
             error.required = true;
     }
@@ -45,11 +45,11 @@ function Validation(input){
 
     //Validations of Types Imput
   if (!input.type.length) {
-    error.type = 'Debes elegir al menos un type';
+    error.type = 'Debes elegir al menos un tipo';
     error.required = true
   }
   if (input.type.length > 2) {
-    error.type = `solo pueden ser dos types`;
+    error.type = `solo pueden ser dos tipo`;
     error.required = true
   }
     return error;

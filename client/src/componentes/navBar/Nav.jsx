@@ -17,7 +17,7 @@ const Nav = () => {
             <div>
                 {location.pathname !== '/home' && <Link to='/home' className={style.links}> Home </Link>}
                 {location.pathname !== '/about' && <Link to='/about' className={style.links}> About </Link>}
-                {location.pathname !== '/pokemons' && <Link to='/pokemons' className={style.links}> Crear personajes </Link>}
+                {location.pathname !== '/pokemons' && <Link to='/pokemons' className={style.links}> Poke Create </Link>}
             </div>
             {location.pathname === '/home' && <SearchBar />}
             {location.pathname !== '/home' && <Link/>}

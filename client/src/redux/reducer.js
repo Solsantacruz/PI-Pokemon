@@ -1,4 +1,4 @@
-import { GET_POKEMON, FILTER_BY_ATTACK, FILTER_BY_TYPES, SORT_BY_CREATED, SORT_ORDER, SEARCH_NAME, CREATE_POKEMON, GET_TYPES, GET_DETAIL, CLEAR_DETAIL } from "./actions";
+import { GET_POKEMON, FILTER_BY_ATTACK, FILTER_BY_TYPES, SORT_BY_CREATED, SORT_ORDER, SEARCH_NAME, CREATE_POKEMON, GET_TYPES, GET_DETAIL, CLEAR_DETAIL, DELETE_POKE } from "./actions";
 
 
 
@@ -24,6 +24,17 @@ const rootReducer = (state = initialState , action) => {
 
     
     }
+
+    case DELETE_POKE:
+      const toDelete = state.allPokemons;
+      const pokeUpdates = toDelete.filter((poke) => poke.id !== action.payload);
+      return {
+        ...state,
+        allPokemons: pokeUpdates,
+        copyPokemons: pokeUpdates,
+      };
+
+
 
     case GET_TYPES:
         return{

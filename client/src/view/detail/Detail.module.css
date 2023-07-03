@@ -85,6 +85,29 @@
     font-family: "IBM Plex Mono", monospace;
 }
 
+.deletePoke {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background: red;
+    color: white;
+    position: absolute;
+    top: 31.5%;
+    left: 39.3%;
+    cursor: pointer;
+}
+
+.deleteP{
+    position: absolute;
+    top: 32%;
+    left: 42%;
+    color: #313a41;
+    font-weight: 900;
+
+}
+
+
 .namePoke{
     position: absolute;
     font-weight: 600;

@@ -116,7 +116,7 @@ const CreatePoke = () => {
 
     return(
     <div className={style.contenedor}>
-    <h1 className={style.h1Title}> Crea tu pokemon </h1>
+    <h1 className={style.h1Title}> Create your pokemon </h1>
     <div className={style.dexForm}>
     <Link to='/home'><button className={style.btnVolver}> Back </button></Link>
     <button onClick={handleRefresh} className={style.btnRefresh}> Refresh </button>
@@ -134,15 +134,23 @@ const CreatePoke = () => {
        ))}
       </div>
       {!imgSele ? (
-     <label>
+     <label> 
       <input //Si no elige img brindada puede pasar url
       type="text"
       value={input.image}
       name="image"
-      placeholder="Ingresa URL imagen"
+      placeholder="URL image: https://www.example..."
       onChange={handleChange}
       className={style.input}/>
-     Sube tu propia imagen</label>
+       {/* <div className={style.conteMuestra}>
+            {input.image && (
+            <img 
+            className={style.conteImgCargada}
+            src={input.image}
+            alt='Imagen seleccionada'/>
+         )}
+        </div> */}
+    </label>
        )  : null}
         </div>
         <div className={style.containerTypes}>
@@ -161,7 +169,7 @@ const CreatePoke = () => {
         <form onSubmit={handleSubmit} className={style.form}>
             <div className={style.contenedorForm}>
         <div>
-            <label className={style.nombre}> Nombre </label>
+            <label className={style.nombre}> Name </label>
             <input type='text' value={input.name} name="name" placeholder='Ingresa el nombre' onChange={handleChange} className={style.input} />
             {!error.name ? null : (<span className={style.span}>{error.name}</span>)}
         </div>
@@ -171,6 +179,7 @@ const CreatePoke = () => {
             <input type='range' min='0' max='150' value={input.life} name="life"  onChange={handleChange} className={style.range} style={
                           error.life ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
                         }/>
+            <span className={style.contador}> {input.life}</span>
             {!error.life ? null : (<span className={style.span}>{error.life}</span>)}
         </div>
         <div>
@@ -178,6 +187,7 @@ const CreatePoke = () => {
             <input type='range' min='0' max='150' value={input.attack} name="attack"  onChange={handleChange} className={style.range} style={
                           error.attack ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
                         }/>
+                        <span className={style.contador}> {input.attack}</span>
             {!error.attack ? null : (<span className={style.span}>{error.attack}</span>)}
         </div>
         <div>
@@ -185,6 +195,7 @@ const CreatePoke = () => {
             <input type='range' min='0' max='150'value={input.defense} name="defense"  onChange={handleChange} className={style.range} style={
                           error.defense ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
                         }/>
+                        <span className={style.contador}> {input.defense}</span>
             {!error.defense ? null : (<span className={style.span}>{error.defense}</span>)}
         </div>
         <div>
@@ -192,6 +203,7 @@ const CreatePoke = () => {
             <input type='range' min='0' max='150' value={input.speed} name="speed"  onChange={handleChange} className={style.range} style={
                           error.speed ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
                         }/>
+                        <span className={style.contador}> {input.speed}</span>
             {!error.speed ? null : (<span className={style.span}>{error.speed}</span>)}
         </div>
         <div>
@@ -199,6 +211,7 @@ const CreatePoke = () => {
             <input type='range' min='0' max='150' value={input.height} name="height"  onChange={handleChange} className={style.range} style={
                           error.height ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
                         }/>
+                        <span className={style.contador}> {input.height}</span>
             {!error.height ? null : (<span className={style.span}>{error.height}</span>)}
         </div>
         <div>
@@ -206,10 +219,11 @@ const CreatePoke = () => {
             <input type='range' min='0' max='150' value={input.weight} name="weight" onChange={handleChange} className={style.range} style={
                           error.weight ? { boxShadow: 'inset 0 0 6px #ff1f1f'} : null
                         }/>
+                        <span className={style.contador}> {input.weight}</span>
             {!error.weight ? null : (<span className={style.span}>{error.weight}</span>)}
         </div>
         </div>
-        <button type='submit' className={style.btnCrear} disabled={!isFormComplete} style={!isFormComplete ? {backgroundColor:'whitesmoke', color:"black"} : null }> Crear personaje </button>
+        <button type='submit' className={style.btnCrear} disabled={!isFormComplete} style={!isFormComplete ? {backgroundColor:'whitesmoke', color:"black"} : null }> Create Pokemon </button>
         </div>
     </form>
     </div>

@@ -1,6 +1,6 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getById, clearDetail} from "../../redux/actions";
+import { getById, clearDetail, deletePokemons} from "../../redux/actions";
 import { useEffect } from "react";
 import style from './Detail.module.css';
 import imgPokeDex from '../../assets/pokedexNew.png';
@@ -9,9 +9,14 @@ import loading from '../../assets/pokeBall.gif';
 
 const Detail = (props) =>{
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {id} = useParams();
     let detalle = useSelector((state)=> state.detail)
 //  const {name, image, life, attack, defense, speed, } = detalle;
+
+
+
+
     useEffect(()=>{
         dispatch(getById(id))
         return () =>{
@@ -19,28 +24,32 @@ const Detail = (props) =>{
         }
     }, [dispatch, id])
 
-    // function handleDelete(id){
-    //     dispatch(deletePokemon(id));
-    //     navigate('/home')
-    // }
+    function handleDelete(id){
+        dispatch(deletePokemons(id) );
+        navigate('/home')
+    }
 return(
     <div className={style.contenedorP}>
         <div className={style.ash}>
             <img src={imgAsh} alt="ash" />
         </div>
+        
         <div className={style.contenedorPokeDex}>
         <Link to='/home'>
         <button className={style.delete}> Back </button>
         </Link>
             <img src={imgPokeDex} alt="pokedex" className={style.imgPokedex}/>
             <div className={style.data}>
-                <p className={style.pData}>Data: </p>
-            </div>
-            
+            <p className={style.pData}>Data: </p>
+            </div>   
         </div>
         <div>
         {detalle.length > 0 ?
         <div>
+             {typeof detalle[0].id === 'string' && (
+             <button className={style.deletePoke} onClick={() => handleDelete(detalle[0].id)}> X </button>)}
+             {typeof detalle[0].id === 'string' && (
+             <p className={style.deleteP}>Delete</p>)}
             <h1 className={style.namePoke}> {detalle[0].name}</h1>
             <p className={style.typePoke}>Types: {detalle[0].types.join(' | ')}</p>
             <img src={detalle[0].image} alt="poke" className={style.imgPoke}/>

@@ -8,8 +8,60 @@ export const GET_TYPES = "GET_TYPES";
 export const GET_DETAIL = "GET_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const CREATE_POKEMON = "CREATE_POKEMON";
-// export const DELETE_POKE = "DELETE_POKE";
+export const DELETE_POKE = "DELETE_POKE";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
+
+
+export const deletePokemons = (id) =>{
+    const endpoint = `http://localhost:3001/pokemons/delete/`;
+   return async (dispatch) => {
+    // try {
+    //   const response = (await axios.delete(endpoint)).data;
+    //      return dispatch({
+    //         type: DELETE_POKE,
+    //         payload: response,
+    //   });
+    // } catch (error) {
+    //   alert('Error al eliminar el pokemon, vuelva a intentarlo')
+    // }
+    try {
+        return fetch(`${endpoint}${id}`, {
+          method: 'DELETE',
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            dispatch({
+              type: DELETE_POKE,
+              payload: json.id,
+            });
+          })
+          .catch((error) => console.log(error));
+      } catch (error) {
+        console.error(error);
+      }
+      
+      };
+   };
+
+// export const deletePokemon = (id) => {
+//     return async (dispatch) => {
+//       try {
+//         return fetch(`${URLDIR}/pokemons/delete/${id}`, {
+//           method: 'DELETE',
+//         })
+//           .then((response) => response.json())
+//           .then((json) => {
+//             dispatch({
+//               type: DELETE_POKE,
+//               payload: json.id,
+//             });
+//           })
+//           .catch((error) => console.log(error));
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     };
+//   };
 
 
 export function getAllPokemon() {

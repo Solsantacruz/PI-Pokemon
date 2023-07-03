@@ -65,16 +65,16 @@ const Home = () => {
         <div className='filtros'>
         <select onChange={handleSortName} className='select'>
             <option value="filtro"> A-Z:</option>
-            <option value="asc">Ascendente</option>
-            <option value="desc">Descendente</option>
+            <option value="asc">Aa-Zz</option>
+            <option value="desc">Zz-Aa</option>
           </select>
           <select name="selects" onChange={e=>{handleFilterAttack(e)}}className='select'>
-            <option value="Fuerza"> Fuerza </option>
-            <option value="Mayor fuerza">Mayor fuerza</option>
-            <option value="Menor fuerza">Menor fuerza</option>
+            <option value="Fuerza"> Attack </option>
+            <option value="Mayor fuerza"> + Attk </option>
+            <option value="Menor fuerza"> - Attk </option>
           </select>
           <select onChange={handleFilterType} className='select'>
-            <option value="tipo"> Tipo </option>
+            <option value="tipo"> Type </option>
             <option value="normal"> Normal </option>
             <option value="flying"> Flying </option>
             <option value="poison"> Poison </option>
@@ -97,9 +97,9 @@ const Home = () => {
             <option value="fighting"> Fighting </option>
           </select>
           <select onChange={handleSortCreated} className='select'>
-            <option value="Todos"> Todos </option>
-            <option value="Creados"> Creados </option>
-            <option value="Existentes"> Existentes </option>
+            <option value="Todos"> All </option>
+            <option value="Creados"> Created </option>
+            <option value="Existentes"> Existing </option>
           </select>
           </div>
          <div className='paginado'>

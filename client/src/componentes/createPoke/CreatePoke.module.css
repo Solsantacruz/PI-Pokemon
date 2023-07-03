@@ -113,6 +113,10 @@ font-size: 4rem;
     background-color: #bbffaa92;
   }
 
+  .imgList:checked + img{
+    background: rgb(52, 132, 129);
+  }
+
   .imgList img:hover{
     transform: translateY(-3%);
     border: 2px solid  #bbffaa92 ;
@@ -127,6 +131,21 @@ font-size: 4rem;
     align-items: center;
 
   }
+
+  /* .conteMuestra{
+    position: absolute
+  } */
+
+  .conteImgCargada{
+    height: 100px;
+    width: 100px;
+    border: 2px solid #ff1f1f;
+  }
+
+
+
+
+
   .nombre{
     padding-top: 15px;
   }
@@ -136,6 +155,11 @@ font-size: 4rem;
     margin-left: 70px;
     color: white;
   } 
+
+  .contador {
+    color: white;
+    font-size: 1.2rem;
+  }
   .input{
    width: 50%;
   background-color: aliceblue;
@@ -183,33 +207,7 @@ font-size: 4rem;
     border: 2px solid #100a09;
     box-shadow: -41px 0 0 40px #f4fa3d;
   }
-
-  /* .contenedorSelect {
-    position: absolute;
-    right: 400px;
-    bottom: 180px;
-  }
-
-
-
-  .select {
-    background-color:  rgb(253, 245, 17);
-    color: rgba(193, 3, 3, 0.661);
-    border-radius: 4px;
-    box-shadow: 0 0 2px 2px rgb(108, 39, 228);
-    margin: 8px;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 2px 8px;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 1rem;
-} */
-
-/* .select:hover{
-    background-color: rgb(29, 20, 44);
-    color:rgb(222, 219, 4);
-} */
-  
+ 
 .contenedorRange {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -217,33 +215,16 @@ font-size: 4rem;
     padding-top: 45px;
 }
 
-/* .contenedorSpaType {
-  display: flex;
-  align-items: center;
-  margin: 10px;
-  background-color: #f7f7fa;
-  width: 100px;
-  height: 22px;
-  border-radius: 5px;
-} */
-
 /* checkbox */
 
 .containerTypes {
   text-transform: uppercase;
   display: grid;
-  
-  /* flex-wrap: wrap;
-  flex-direction: column;
-  padding: 5px 5px; */
-  /* background: rgba(0, 0, 0, 0.5); */
   background-color: rgba(148, 2, 2, 0.644);
   border-radius: 16px;
   box-shadow: -3px 4px 0  #ffffff93, -5px 7px 0  #511717ea;
-  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  /* border: 3px solid rgb(255, 255, 255); */
   
 }
 
@@ -270,7 +251,6 @@ font-size: 4rem;
 
 .ckeck:checked + label {
   background: #00fd0a;
-
   border-radius: 30px;
   border: 1px solid rgb(255, 255, 255);
 }

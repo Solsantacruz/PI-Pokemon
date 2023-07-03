@@ -36,8 +36,8 @@ const SearchBar = () => {
         {
             !load ? 
                 <div>
-                <input type='text' placeholder="Buscar..." value={name} onChange={handleInputChange} className={style.input} />
-        <button type="submit" onClick={handleSubmit} className={style.boton}> Buscar </button>
+                <input type='text' placeholder="Search..." value={name} onChange={handleInputChange} className={style.input} />
+        <button type="submit" onClick={handleSubmit} className={style.boton}> Search </button>
         </div> : (
             <div className={style.contenedorSearch}>
                 <img src={charLoad} alt="search" />
